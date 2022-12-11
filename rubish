@@ -1,0 +1,818 @@
+# try:
+#     while True: print(eval(input('>>>:')))
+# except ZeroDivisionError:
+#     print('На 0 делить нельзя')
+#     while True: print(eval(input('>>>:')))
+# except NameError:
+#     print('Ввидите число а не строку или переменною')
+#     while True: print(eval(input('>>>:')))
+# except SyntaxError:
+#     print('Ввидите заново число')
+#     while True: print(eval(input('>>>:')))
+# except TypeError:
+#     print('Водите только числа')
+#     while True: print(eval(input('>>>:')))
+
+from class_testing import AnonymousServey
+import unittest
+
+question = 'Какой язык программирования ты учишь ? '
+
+my_survey = AnonymousServey(question)
+
+my_survey.show_question()
+print("Нажмите 'Х' что бы выйти с опроса.")
+while True:
+    response = input('Язык: ')
+    if response  == 'X':
+        break
+    my_survey.store_response(response)
+
+print('Это ваши ответы: ')
+my_survey.show_result()
+
+class AnonymousServey():
+    '''Класс для анонимный ответов'''
+
+    def __init__(self, question):
+        '''Сохронять вопрос'''
+        self.question = question
+        self.responses = []
+
+    def show_question(self):
+        '''Выводи вопроса'''
+        print(str(self.question))
+
+    def store_response(self, new_response):
+        '''Сохранение 1 ответа'''
+        self.responses.append(new_response)
+
+    def show_result(self):
+        '''Вывод полученных ответов'''
+        print('Ответы: ')
+        for i in self.responses:
+            print('- ' + i)
+
+# Классы и экземпляри
+
+class Car():
+    'Класс по созданию автомобилю'''
+    def __init__(self, make, model, year):
+        'Инициализация атрибутов автомобиля'''
+        self.make = make
+        self.model = model
+        self.year = year
+        self.odometer_reading = 0
+        print('машина создана')
+
+    def description_name(self):
+        ' Возвращаем описание автомоблия '''
+        desc = str(self.year) + ' ' +  self.make + ' ' + self.model
+        return desc.title()
+
+    def read_odometer(self):
+        '''Выводим пробег авто'''
+        print('Пробег это авто ' + str(self.odometer_reading) + ' км')
+
+    def update_odometer(self, km):
+        '''Устанавливаем значение на одометре'''
+        if km >= self.odometer_reading:
+            self.odometer_reading = km
+        else:
+            print('Не стоит это трогать')
+
+    def inret_odometer(self, km):
+        '''Увеличиваем показания одоментра на заданаю велечичу'''
+        if  km  < 0:
+            print('Ты че сделал')
+        else:
+          self.odometer_reading += km
+
+class Battery():
+
+    def __init__(self, battery = 100, charge_battery = 100):
+        self.charge_battery = charge_battery
+        self.battery = battery
+        self.odometer_reading2 = 0
+
+    def odometr_read(self):
+        print('Разряд автомобиля ' + str(self.odometer_reading2 * self.battery - self.battery))
+
+    def read_odometer_reading2(self):
+        print( 'Это просто ' + str(self.odometer_reading2))
+
+    def description_battery(self):
+        print('Этот автомобиль имеет батарею мощностю ' + str(self.battery))
+
+    def description_charge_battery(self):
+        print('Заряд этого автомобиля ' + str(self.charge_battery))
+
+
+class ElectricCar(Car):
+    def __init__(self, make, model, year):
+        super().__init__(make, model, year)
+        self.battery = Battery()
+        self.charge_battery = Battery()
+
+    def description_name(self):
+
+        desc = str(self.year) + ' ' + self.model
+        return desc.title()
+
+tesla = ElectricCar('tesla', 'Model S', 2017)
+# tesla.battery.description_battery()
+# tesla.battery.description_charge_battery()
+# tesla.odometer_reading = 6000
+# tesla.read_odometer()
+# tesla.battery.odometr_read()
+tesla.battery.odometer_reading2 = 1000
+tesla.battery.read_odometer_reading2()
+tesla.battery.odometr_read()
+
+
+# audi = Car('Audi', 'R6', 2012)
+# print(audi.description_name())
+# audi.odometer_reading = 60000
+# audi.update_odometer(30)
+# audi.inret_odometer(23)
+# audi.read_odometer()
+
+
+# class people():
+#     def __init__(self, name, age, country, city):
+#         self.name = name
+#         self.age = age
+#         self.country = country
+#         self.city = city
+#         self.high = 0
+#
+#     def descripe(self):
+#         print(self.name + ' ' +  str(self.age) + ' age ' + self.country + ' ' + self.city)
+#
+#     def high_people(self):
+#         print('Это рост ' + self.name +  ' ' + str(self.high) + ' см')
+#
+#     def update_high(self, cm):
+#         if cm >= self.high:
+#             self.high = cm
+#         else:
+#             print('Are you dwarf')
+#
+#
+#
+#
+# Dima = people('Dima', 16, 'Ukraine', 'Odessa')
+# Dima.descripe()
+# Dima.high = 170
+# Dima.update_high(19)
+# Dima.high_people()
+
+# class User():
+#     '''Проcтая модель собаки'''
+#
+#     def __init__(self, name, age):
+#         '''Инициализируем атрибуты имя, цвет и возраст'''
+#         self.name = name
+#         self.age = age````````
+#         self.logged = 0
+#
+#     def logged_in(self):
+#         print('Пользователь ' + self.name + ' вошел на сайт')
+#
+#     def logged_out(self):
+#         print('Пользователь ' + self.name + ' вышел из сайта')
+#
+#     def count_logged_in(self, count):
+#         if count > self.logged:
+#             self.logged = count
+#             print('Пользаватель ' + self.name +
+#                   ' вошел на сайт ' + str(count) + ' раз')
+#         else:
+#             print('Ты что хакер ?')
+#
+#
+# class privilege():
+#     def __init__(self, privilege ='Администратор может : \t 1. Нанимать людей \t 2. Увольнять людей'):
+#         self.privilege = privilege
+#
+#     def privilege_admistrator(self):
+#         print('Это права администратора : ' + self.privilege)
+#
+#
+# class administrator(User):
+#     def __init__(self, name, age):
+#         super().__init__(name, age)
+#         self.privilege = privilege()
+#
+#
+# Nataliy = administrator('Nataliy', 24)
+# Nataliy.privilege.privilege_admistrator()
+
+# Tom  = User('Dima', 14)
+# Tom.logged_in()
+# Tom.logged_out()
+# Tom.count_logged_in(10)
+
+
+if __name__ == '__main__':
+    pass
+# Классы
+
+# class Dog():
+#     '''Проcтая модель собаки'''
+#
+#     def __init__(self, name, age, color):
+#         '''Инициализируем атрибуты имя, цвет и возраст'''
+#         self.name = name
+#         self.age = age
+#         self.color = color
+#         print('Cобака родилась')
+#
+#     def sit(self):
+#         '''Собака будет садиться по команде'''
+#         print(self.name.title() + ' Сидеть')
+#
+#     def voice(self):
+#         '''Собака будет давать голос по команде'''
+#         print(self.name.title() + ' Гав гав')
+#
+#     '''Собака будет прыгать'''
+#     def jump(self):
+#         print(self.name.title() + ' Прыжок')
+#
+# my_dog = Dog('Bobik', 5, 'black')
+# my_dog2 = Dog('Nick', 7, 'black')
+# print(my_dog.name)
+# print(my_dog.age)
+# my_dog.voice()
+# my_dog2.sit()
+# poppy = Dog('Poppy', 2, 'white')
+# poppy.jump()
+#
+# '''Создаем класс кот'''
+# class Cat():
+#     def information (self, name, age, color):
+#         self.name = name
+#         self.age = age
+#         self.color = color
+#     print('Кот создан ')
+#
+#     '''Функция вывидит информацию про нашего кота '''
+#     def info(self):
+#         print(self.name, self.age, self.color)
+#
+#
+# cat = Cat()
+# cat.information('Tobik', 4, 'White')
+# cat.info()
+
+# import unittest
+# class Employee():
+#     def __init__(self, f_name, l_name, money):
+#         self.f_name = f_name
+#         self.l_name = l_name
+#         self.money = money
+#
+#     def give_raise(self, ammount = 5000):
+#         self.money += ammount
+#
+#
+# Bob = Employee('Bob', 'Biirlko', 2000)
+# Bob.give_raise()
+
+# class Point:
+#     hello = None
+#     def __new__(cls,*args, **kwargs):
+#         if cls.hello is None:
+#             cls.hello = super().__new__(cls)
+#         return cls.hello
+#
+#
+#     def __init__(self, x=0, y=0):
+#         print('Вызов __init__ для' + str(self))
+#         self.x = x
+#         self.y =y
+#
+#     def show(self):
+#         print(self.x, self.y)
+#
+# pt = Point(1, 2)
+# pt2 = Point(3, 9)
+#
+# pt.show()
+# pt2.show()
+
+# def func_decorater(func):
+#     def wrapper(*args, **kwargs):
+#         print('----')
+#         res = func(*args, **kwargs)
+#         print('----')
+#         return res
+#     return wrapper
+#
+#
+# def some_func(title):
+#     print(f'tittle = {title}')
+#     return f'{title} hello'
+#
+#
+# some_func =  func_decorater(some_func)
+# res = some_func('Где мой свет скатины')
+# print(res)
+
+import time
+
+def test_time(func):
+    def wrapper(*args, **kwargs):
+        st = time.time()
+        res = func(*args, **kwargs)
+        et = time.time()
+        dt = et - st
+        print(f'Время работы функции {dt} сек')
+        return res
+    return wrapper
+
+def get_nod(a, b):
+    while a != b:
+        if a > b:
+            a -= b
+        else:
+            b -= a
+    return a
+
+get_nod = test_time(get_nod)
+res = get_nod(2, 100)
+print(res)
+
+# # Запись в файл
+# str = input('Как дела ? ')
+# f = open('python/some1.txt', 'w')
+#
+# f.write(str)
+# f.close()
+#
+# #Чтение файла
+#
+fr = open('python/some.txt', 'r')
+# text = fr.read(3)
+# fr.close()
+
+# print(text)
+
+for i in fr:
+    print(i)
+
+fr.close()
+
+result = []
+with open('python/text1', 'r') as f:
+    for i in f.readlines():
+        result.append(i.split()[1])
+print(result)
+
+
+with open('python/dominas', 'r') as fl:
+    text = fl.read()
+    domen = text.replace('.','')
+print(domen)
+
+class Car():
+    'Класс по созданию автомобилю'''
+    def __init__(self, make, model, year):
+        'Инициализация атрибутов автомобиля'''
+        self.make = make
+        self.model = model
+        self.year = year
+        self.odometer_reading = 0
+        print('машина создана')
+
+    def description_name(self):
+        ' Возвращаем описание автомоблия '''
+        desc = str(self.year) + ' ' +  self.make + ' ' + self.model
+        return desc.title()
+
+    def read_odometer(self):
+        '''Выводим пробег авто'''
+        print('Пробег это авто ' + str(self.odometer_reading) + ' км')
+
+    def update_odometer(self, km):
+        '''Устанавливаем значение на одометре'''
+        if km >= self.odometer_reading:
+            self.odometer_reading = km
+        else:
+            print('Не стоит это трогать')
+
+    def inret_odometer(self, km):
+        '''Увеличиваем показания одоментра на заданаю велечичу'''
+        if  km  < 0:
+            print('Ты че сделал')
+        else:
+          self.odometer_reading += km
+
+class Battery():
+
+    def __init__(self, battery = 100, charge_battery = 100):
+        self.charge_battery = charge_battery
+        self.battery = battery
+        self.odometer_reading2 = 0
+
+    def odometr_read(self):
+        print('Разряд автомобиля ' + str(self.odometer_reading2 * self.battery - self.battery))
+
+    def read_odometer_reading2(self):
+        print( 'Это просто ' + str(self.odometer_reading2))
+
+    def description_battery(self):
+        print('Этот автомобиль имеет батарею мощностю ' + str(self.battery))
+
+    def description_charge_battery(self):
+        print('Заряд этого автомобиля ' + str(self.charge_battery))
+
+
+class ElectricCar(Car):
+    def __init__(self, make, model, year):
+        super().__init__(make, model, year)
+        self.battery = Battery()
+        self.charge_battery = Battery()
+
+    def description_name(self):
+
+        desc = str(self.year) + ' ' + self.model
+        return desc.title()
+
+
+# tesla = ElectricCar('tesla', 'Model S', 2017)
+# # tesla.battery.description_battery()
+# # tesla.battery.description_charge_battery()
+# # tesla.odometer_reading = 6000
+# # tesla.read_odometer()
+# # tesla.battery.odometr_read()
+# tesla.battery.odometer_reading2 = 1000
+# tesla.battery.read_odometer_reading2()
+# tesla.battery.odometr_read()
+if __name__ == '__main__':
+    pass
+    
+email = 'sauberr10@gmail.com'
+
+
+def inp_email(email):
+    if 'gmail' in email:
+        domain = email.split('@')[1].replace('gmail', 'yandex')
+    correct = email.split('@')[0] + domain
+    return correct.lower()
+
+# from collections import Counter
+#
+# file = open('text', 'r', encoding='utf-8')
+# txt = file.read()
+# file.close()
+#
+# word_list = []
+#
+# txt1 = txt.replace("''", '')
+# for word in txt1.split():
+#     new_string = ''
+#     clear_world = ''
+#     for letter in word:
+#         if letter.isalpha():
+#             clear_world += letter.lower()
+#
+#     word_list.append(clear_world)
+#
+# print(Counter(word_list))
+
+# from import_classes import Car
+# import import_classes # Импорт всего класса
+# audiA4 = import_classes.Car('audi', 'a4', 2007)
+# print(audiA4.description_name())\
+
+'''Скачивание изображения'''
+# import random
+# import urllib.request
+#
+#
+# def dowland_img(url):
+#     try:
+#      name = random.randrange(1, 100)
+#      name = str(name) + '.jpg'
+#      urllib.request.urlretrieve(url, name)
+#      if name == name:
+#          new_name = 'copy' +  name
+#          urllib.request.urlretrieve(url, new_name)
+#     except:
+#         print('Выбирете другой url картинки')
+#
+#
+# dowland_img(
+#     'https://telecomdom.com/wp-content/uploads/2020/02/kartinki-na-telefon-5-576x1024.jpg')
+
+
+a = 10
+b = []
+for i in range(a):
+    if  i % 2 == 0:
+        b.append(i)
+print(b)
+
+# m = 1
+# s = 1
+# while m != 0:
+#      m = int(input())
+#      if m <= 0:
+#          continue
+#      s *= m
+# print(s)
+#
+# m = list(map(str, input().split()))
+# i = 0
+# ans = 'НЕТ'
+# while i < len(m):
+#      if m[i].lower() == m[i][-1].lower():
+#          ans = ('ДА')
+#          break
+#      else:
+#          i += 1
+# print(ans)
+
+
+# m = list(map(str, input().split()))
+# i = 0
+# ans = 'ДА'
+# while i < len(m):
+#      if len(m[i]) <= 5:
+#          ans = ('НЕТ')
+#          break
+#      else:
+#         i += 1
+# print(ans)
+
+#
+# m = int(input())
+# lst = [1]
+# while len(lst) < m:
+#     a = sum(lst[-2:])
+#     lst.append(a)
+# print(*lst)
+
+# new_list = [104,65,543,32,435,54,4]
+# if len(new_list) >= 2:
+#      new_list.append(new_list[-1] + new_list[-2])
+# else:
+#      new_list.append(0)
+# print(new_list)
+# print(new_list[-1])
+
+
+# a = 'one&One&one'
+# b = list(a.split('.'))
+# c = set(b)
+# print(' '.join(c))
+
+# a = "['mix', 'extra', '', 'x-files', 'xyz', 'xapple', 'apple']"
+# c = a.split()
+# print(c)
+
+#
+# my_string = "['mix', 'extra', '', 'x-files', 'xyz', 'xapple', 'apple']"
+# ms2 = my_string[1:-1]
+# ms3 = ms2.replace("'", "")
+# ms4 = ms3.split(', ')
+# L = ms4
+# print(ms4)
+
+
+# M = input()
+# b = M[2:-2]
+# print(b)
+# # s = b.split("', '")
+# # print(s)
+
+# a = "['mix', 'extra', '', 'x-files', 'xyz', 'xapple', 'apple']"
+# c = a[1:-1]
+# b = c.replace("'", "")
+# L = (b.split(', '))
+# print(L)
+# m = int(input())
+# ans = 0
+# for i in range(2, m):
+#     if m % i == 0:
+#         print('НЕТ')
+#         break
+# else:
+#     print('ДА')
+#
+# my_string_1 = "12"
+# my_string_2 = "34"
+# for symb_1 in my_string_1:
+#     for symb_2 in my_string_2:
+#         print(symb_1 + symb_2)
+
+# number = int(input())
+# i = 1
+# a = []
+# while i in range(1, number +1):
+#       if number >= 100:
+#          print('Пока')
+#          break
+#       if i % 3 == 0 and i % 5 == 0:
+#            a.append(i)
+#            i += 1
+#       else:
+#            i  += 1
+# else:
+#     print(*a)
+#
+#
+# number = int(input())
+# i = 1
+# while True:
+#     if i ** 2 > 10:
+#         print(i)
+#         break
+#     i += 1
+# m = 1
+# i = 0
+# while m != 0:
+#     m = int(input())
+#     i += m
+# print(i)
+#
+#
+# class Counter():
+#    def start_from(self):
+#        self.x = 0
+#    def one_two(self):
+#        self.x += 1
+#
+#    def sum (self):
+#        print(f'Это  {self.x} раз ')
+#
+#    def clear(self):
+#        self.x = 0
+#
+# a = Counter()
+# a.start_from()
+# a.one_two()
+# a.sum()
+# a.one_two()
+# a.one_two()
+# a.sum()
+# a.clear()
+# a.one_two()
+# a.sum()
+
+
+# def solve(s):
+#     q = ''
+#     q1 = s.split('')
+#     for i in q1:
+#         q += i.capitalize() + ' '
+#     return q
+
+# s = 'dima birilko'
+# q = ''
+# q1 = s.split(' ')
+# for i in q1:
+#         q += i.capitalize() + ' '
+# print(q)
+
+# n = int(input())
+# integer_list = (map(int, input().split()))
+# print(hash(integer_list))
+
+# import textwrap
+# s = 'ABCDEFGHIJKLIMNOQRSTUVWXYZ'
+# d = 4
+# print('\n'.join(textwrap.wrap(s, d)))
+
+
+#
+# def sum(a, b):
+#     if type(a) in [int or float] and type(b) in [int or float]:
+#        return a + b
+#     else:
+#         return 'TypeError'
+#
+#
+#
+#
+# if __name__ == '__main__':
+#     def sum1():
+#         assert sum(4, 4) == 8
+#         assert sum(4, 7) == 11
+#
+#
+#     def sum2():
+#         assert sum(4, '2') == 'TypeError'
+#         assert sum(4, -2) == 2
+#     sum1()
+#     sum2()
+#     print('Ok')
+
+# b = []
+# c = []
+# for _ in range(int(input())):
+#     name = input()
+#     score = float(input())
+#     b.append([name,score])
+#     c.append(score)
+# # print(b[1][0])
+# # print(c)
+# c = sorted(set(c))
+# # print(c)
+# m = c[1]
+# # print(m)
+# name = []
+# for i in b:
+#     if m == i[1]:
+#         name.append(i[0])
+#
+# # print(name)
+# name.sort()
+# # print(name)
+# for a in name:
+#     print(a)
+
+# p = [0] * 10
+# i = 0
+# while i < 5:
+#     index = int(input())
+#     if p[index] != 1:
+#         p[index] = 1
+#         i += 1
+#     continue
+# print(*p)
+
+
+
+
+
+email = 'sauberr10@gmail.com'
+
+
+def input_email(email):
+    if 'gmail' in email:
+        domain = email.split('@')[1].replace('gmail', 'yandex')
+    correct = email.split('@')[0] + '@'  + domain
+    return correct.lower()
+
+
+input_email('sauberr10@gmail.com')
+
+#import unittest
+# from class_testing import AnonymousServey
+#
+# class Test_AnonymousServey(unittest.TestCase):
+#     '''Тесты дял класс'''
+#
+#     def setUp(self):
+#         '''`Создание опроса и набора ответов для всех методов'''
+#         question = 'Какой язык программирования ты учишь '
+#         self.my_servey = AnonymousServey(question)
+#         self.responses = ['Java', 'PHP', 'CC', 'GO', 'Python']
+#
+#
+#     def test_store_single_response(self):
+#         '''Проверка что один ответ сохранен в списке'''
+#         self.my_servey.store_response(self.responses[1])
+#         self.assertIn(self.responses[1], self.my_servey.responses)
+#
+#     def test_five_response(self):
+#         '''Проверяет что 5 ответов было сохранены'''
+#         self.my_servey.store_response(self.responses[0:6])
+#         self.assertIn(self.responses[0:6], self.my_servey.responses)
+#
+#
+#
+#     def test_three(self):
+#         question = 'Какой язык программирования ты учишь '
+#         my_servey = AnonymousServey(question)
+#         responses = ['Java', 'PHP', 'CC']
+#         for i in responses:
+#             my_servey.store_response(i)
+#
+#         for i in responses:
+#             self.assertIn(i, my_servey.responses)
+
+from classes import Employee
+import unittest
+
+class Test_Employee(unittest.TestCase):
+    def setUp(self):
+          self.employee = Employee('Bob', 'Birilko', 3500)
+
+    def test_raise_1(self):
+        self.employee.give_raise()
+        self.assertEqual(8500, self.employee.money)
+
+    def test_raise_2(self):
+        self.employee.give_raise(400)
+        self.assertEqual(3900, self.employee.money)
+
+
+
+if __name__ == '__main__':
+    unittest.main()
+
+
