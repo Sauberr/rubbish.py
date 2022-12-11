@@ -815,4 +815,218 @@ class Test_Employee(unittest.TestCase):
 if __name__ == '__main__':
     unittest.main()
 
+# import json
+#
+# nums = [43,87,431,4357,56]
+#
+# filename = 'json.file1'
+# with open(filename, 'w') as f:
+#      json.dump(nums, f)
+# print(nums)
+#
+# filename = 'nums.json'
+# with open(filename) as fl:
+#     nums_new = json.load(fl)
+# print(nums_new)
+
+# print(nums_new)
+#
+#
+# import json
+#
+# username = input('Ввидите свое имя: ')
+# filename = 'user.json'
+# with open(filename, 'w') as t:
+#     json.dump(username, t)
+#
+#
+# filename = 'user.json'
+# with open(filename) as tl:
+#     user_name = json.load(tl)
+#
+# # import json
+# address_1 = {'city': 'Dnipro',
+#               'street': 'Polya',
+#               'building': 123}
+# filename = 'address.json'
+# with open(filename, 'w') as f:
+#    json.dumps(address_1)
+#
+# print(address_1)
+
+
+# my_list = ["Это", "просто", "пример", "списка", "123", "456"]
+# new_list = []
+# for i in range(len(my_list)):
+#     if  i % 2:
+#         new_list.append(my_list[i][::-1])
+#     else:
+#         new_list.append(my_list[i])
+# print(new_list)
+
+
+# # surnames = '\n'.join([line.split()[1] for line in name1.readlines()])
+# lst = []
+# with open('doxet', "r") as name1:
+#         for line in name1.readlines():
+#             lst.append(line.split('\t')[1])
+#
+# print (lst)
+
+# import json
+#
+# def get_user():
+#     '''Получает имя пользователя если она есть'''
+#     filename = 'user.json'
+#     try:
+#         with open(filename) as f:
+#             user = json.load(f)
+#     except FileNotFoundError:
+#         return None
+#     else:
+#         return user
+#
+#
+# def greet_user():
+#     username = get_user()
+#     if username:
+#         print('Привет')
+#     else:
+#         username = input('Введите имя : ')
+#         filename = 'user.json'
+#         with open(filename, 'w', encoding='utf-8') as fl:
+#             json.dump(username, fl, ensure_ascii=False)
+#             print('Мы рады видеть тебя ' + username)
+
+
+# greet_user()
+
+# def greet_user():
+#     '''Приветствие пользователя'''
+#     filename = 'user.json'
+#     try:
+#        with open(filename, encoding='utf-8') as f:
+#             user = json.load(f)
+#     except:
+#         username = input('Ввидите ваше имя: ')
+#         with open(filename, 'w', encoding='utf-8') as fl:
+#             json.dump(username, fl, ensure_ascii=False)
+#             print('Мы запомнили ваше имя: ' + username + '!')
+#     else:
+#         print('Добро пожаловать ' + user)
+#
+#
+
+
+'''Любимое число: '''
+# import json
+# filename = 'favourite_number.json'
+# favourite_number = input('Введите свое любимое число : ')
+# with open(filename, 'w') as f:
+#     json.dump(favourite_number, f)
+#
+# filenames = 'favourite_number.json'
+# with open (filenames) as fl:
+#     your_number = json.load(fl)
+#     print('Я знаю ваше любимое число! Это ' + your_number + ' !')
+
+# '''Сохраненное любимое число'''
+# import json
+# def get_number():
+#     filename = 'json.number'
+#     try:
+#         with open(filename) as f:
+#             user = json.load(f)
+#     except FileNotFoundError:
+#         return None
+#     else:
+#         return user
+#
+#
+# def greet_number():
+#     number = get_number()
+#     if number:
+#         print('Привет')
+#     else:
+#         number = input('Введите свое любимое число: ')
+#         filename = 'json.number'
+#         with open(filename,'w', encoding='utf-8') as fl:
+#             json.dump(number, fl, ensure_ascii=False)
+#             print('Вот твое любимое число  ' + number)
+#
+# greet_number()
+
+import json1
+#
+# data = {
+#     'to user': 'segey',
+#     'text': 'Hello',
+#     'type': 'direct',
+#     'demolition' : None
+# }
+# json_str = json.dumps(data) # мз py_obj в json_str
+#
+# # null == None
+# print(json_str)
+
+'''Делаем из типов пайтон в типы JSon'''
+# class MyEncoder(json.JSONEncoder):
+#     def default(self, o):
+#         if isinstance(o, set):
+#             return list(o)
+#         return o
+#
+# json_str = json.dumps({1, 2, 3}, cls=MyEncoder)
+# print(json_str)
+
+# '''Из строки json в обк пайтон'''
+# json_str = json.dumps([1, 2, 3])
+# print(json_str)
+# py_obj = json.loads(json_str)
+# print(py_obj[0])
+#
+# json_str = json.dumps('Привет', ensure_ascii= False)
+# print(json_str)
+# dict = {
+#     'text': 'gfgfgf',
+#      'text': 'gfgfgf'
+# }
+# json_str = json.dumps(dict, indent=4)
+# print(json_str)
+
+
+'''Модуль OS'''
+
+import os # модуль командная строка
+
+print('Текущая директория ', os.getcwd())
+os.mkdir('Название папки') # Создание папки
+os.chdir('Название папки') # Переход в папку
+os.makedirs('One/Two/Three') # вложеные папки
+
+file = open('test.txt', 'w')
+file.write('Hello')
+os.rename('Название файла') # меняем название папки
+
+os.replace('Название файла')# Перетаскиваем файл
+
+print(os.listdir()) # Название всех файлов и папок в каталоге
+
+for dirpach, dirnames, filenames in os.walk('.'):
+    for dirname in dirnames:
+        print('Каталог', os.path.join(dirpach,dirname))
+    for filename in filenames:
+        print('Файл', os.path.join(dirpach, filename))
+
+os.remove('Путь к файлу') # удаление файла
+os.rmdir('Папка') # удаление папки
+os.removedirs(' ')# удаление каталога
+open('text.txt', 'w').write('Текстновый файл')
+print(os.stat('Название файла'))
+print(os.stat('text.txt').st_size)
+
+
+
+
+
 
